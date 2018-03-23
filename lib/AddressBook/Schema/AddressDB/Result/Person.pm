@@ -84,5 +84,18 @@ __PACKAGE__->set_primary_key("id");
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:BvDhQ8dnEbHBKHXAg7bZTA
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+__PACKAGE__->has_many(
+    addresses => 'AddressBook::Schema::AddressDB::Result::Addresses',
+    'person',
+    { cascading_delete => 1 }
+);
+
+sub name {
+    my $self = shift;
+    return $self->firstname . ' ' . $self->lastname;
+
+}
+
 __PACKAGE__->meta->make_immutable;
 1;

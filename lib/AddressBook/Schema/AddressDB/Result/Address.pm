@@ -106,5 +106,9 @@ __PACKAGE__->set_primary_key("id");
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:oGk9LJ+IkAcqzPBULDrI+Q
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+__PACKAGE__->belongs_to(
+    person => 'AddressBook::Schema::AddressDB::Result::Person' );
+
 __PACKAGE__->meta->make_immutable;
 1;
