@@ -38,6 +38,28 @@ sub list : Path : Args(0) {
     $c->stash->{people} = $people;
 }
 
+=head2 delete
+
+Remove people
+
+=cut
+
+sub delete : Local {
+    my ( $self, $c, $id ) = @_;
+    my $person = $c->model('AddressDB::Person')->find( { id => $id } );
+    $c->stash->{person} = $person;
+    if ($person) {
+        $c->stash->{message} = 'Deleted ' . $person->name;
+        $person->delete;
+    }
+    else {
+        $c->response->status(404);
+        $c->stash->{error} = "No person $id";
+    }
+    $c->forward('list');
+
+}
+
 =encoding utf8
 
 =head1 AUTHOR
