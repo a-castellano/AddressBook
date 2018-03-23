@@ -31,7 +31,7 @@ Catalyst::Helper::Model::DBIC::Schema - 0.65
 
 =head1 AUTHOR
 
-azas
+Álvaro Castellano Vela, alvaro.castellano.vela@gmail.com,,
 
 =head1 LICENSE
 
