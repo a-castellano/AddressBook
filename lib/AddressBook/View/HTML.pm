@@ -9,11 +9,12 @@ __PACKAGE__->config(
             AddressBook->path_to( 'root', 'src' ),
             AddressBook->path_to( 'root', 'lib' )
         ],
-        PRE_PROCESS => 'config/main',
-        WRAPPER     => 'site/wrapper',
-        ERROR       => 'error.tt2',
-        TIMER       => 0,
-        render_die  => 1,
+        TEMPLATE_EXTENSION => '.tt2',
+        PRE_PROCESS        => 'config/main',
+        WRAPPER            => 'site/wrapper',
+        ERROR              => 'error.tt2',
+        TIMER              => 0,
+        render_die         => 1,
     }
 );
 
@@ -31,7 +32,7 @@ Catalyst TTSite View.
 
 =head1 AUTHOR
 
-azas,,,
+Álvaro Castellano Vela, alvaro.castellano.vela@gmail.com,,
 
 =head1 LICENSE
 
