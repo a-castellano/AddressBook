@@ -13,6 +13,7 @@ requires 'Catalyst::Authentication::Store::DBIx::Class';
 requires 'Catalyst::Authentication::Credential::HTTP';
 requires 'DBIx::Class::EncodedColumn';
 requires 'Moose';
+requires 'MooseX::NonMoose';
 requires 'namespace::autoclean';
 requires 'Config::General';
 requires 'Module::Install::Catalyst';
