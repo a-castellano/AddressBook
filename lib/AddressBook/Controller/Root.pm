@@ -8,7 +8,7 @@ BEGIN { extends 'Catalyst::Controller' }
 # Sets the actions in this controller to be registered with no prefix
 # so they function identically to actions created in MyApp.pm
 #
-__PACKAGE__->config(namespace => '');
+__PACKAGE__->config( namespace => '' );
 
 =encoding utf-8
 
@@ -28,12 +28,7 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
-
-    # Hello World
-    $c->response->body( $c->welcome_message );
-}
+sub index : Path Args(0) { }
 
 =head2 default
 
@@ -41,10 +36,11 @@ Standard 404 error page
 
 =cut
 
-sub default :Path {
+sub default : Path {
     my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
-    $c->response->status(404);
+    $c->response->status('404');
+    $c->stash->{template} = 'not_found.tt2';
+
 }
 
 =head2 end
@@ -53,16 +49,15 @@ Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') {}
+sub end : ActionClass('RenderView') { }
 
 =head1 AUTHOR
 
-azas,,,
+Álvaro Castellano Vela, alvaro.castellano.vela@gmail.com,,
 
 =head1 LICENSE
 
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
+This library is free software. You can redistribute it and/or modify it under the same terms as Perl itself.
 
 =cut
 
