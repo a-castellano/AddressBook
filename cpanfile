@@ -19,6 +19,7 @@ requires 'Config::General';
 requires 'Module::Install::Catalyst';
 requires 'Catalyst::Model::Adaptor';
 requires 'Catalyst::View::TT';
+requires 'Catalyst::Controller::FormBuilder';
 
 recommends 'Pod::Usage';
 
