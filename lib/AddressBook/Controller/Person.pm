@@ -97,6 +97,27 @@ sub edit : Local Form {
     }
 }
 
+sub delete : Local {
+    my ( $self, $c, $address_id ) = @_;
+    my $address =
+      $c->model('AddressDB::Addresses')->find( { id => $address_id } );
+    if ($address) {
+
+        # "Deleted First Last's Home address"
+        $c->stash->{message} =
+            'Deleted '
+          . $address->person->name . q{'s }
+          . $address->location
+          . ' address';
+        $address->delete;
+    }
+    else {
+        $c->stash->{error} = 'No such address';
+
+    }
+    $c->forward('/person/list');
+}
+
 =head2 add
 
 add people
