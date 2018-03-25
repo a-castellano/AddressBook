@@ -20,6 +20,9 @@ use Catalyst qw/
   -Debug
   ConfigLoader
   Static::Simple
+  Session
+  Session::State::Cookie
+  Session::Store::FastMmap
   /;
 
 extends 'Catalyst';
@@ -46,6 +49,12 @@ __PACKAGE__->config(
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header                      => 1,   # Send X-Catalyst header
+);
+__PACKAGE__->config(
+    session => {
+        dbic_class     => 'AddressDB::Session',
+        flash_to_stash => 1
+    }
 );
 
 # Start the application

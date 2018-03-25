@@ -50,14 +50,16 @@ sub delete : Local {
     my $person = $c->model('AddressDB::Person')->find( { id => $id } );
     $c->stash->{person} = $person;
     if ($person) {
-        $c->stash->{message} = 'Deleted ' . $person->name;
+        $c->flash->{message} = 'Deleted ' . $person->name;
         $person->delete;
+
     }
     else {
-        $c->response->status(404);
-        $c->stash->{error} = "No person $id";
+        $c->flash->{error} = "No person $id";
+
     }
-    $c->forward('list');
+    $c->response->redirect( $c->uri_for_action('person/list') );
+    $c->detach();
 
 }
 
@@ -95,27 +97,6 @@ sub edit : Local Form {
             value => $person->lastname
         );
     }
-}
-
-sub delete : Local {
-    my ( $self, $c, $address_id ) = @_;
-    my $address =
-      $c->model('AddressDB::Addresses')->find( { id => $address_id } );
-    if ($address) {
-
-        # "Deleted First Last's Home address"
-        $c->stash->{message} =
-            'Deleted '
-          . $address->person->name . q{'s }
-          . $address->location
-          . ' address';
-        $address->delete;
-    }
-    else {
-        $c->stash->{error} = 'No such address';
-
-    }
-    $c->forward('/person/list');
 }
 
 =head2 add
