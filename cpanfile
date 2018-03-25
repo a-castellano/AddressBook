@@ -20,6 +20,9 @@ requires 'Module::Install::Catalyst';
 requires 'Catalyst::Model::Adaptor';
 requires 'Catalyst::View::TT';
 requires 'Catalyst::Controller::FormBuilder';
+requires 'Session::Store::DBIC';
+requires 'Catalyst::Plugin::Session;
+requires 'Catalyst::Plugin::Session::State::Cookie';
 
 recommends 'Pod::Usage';
 
