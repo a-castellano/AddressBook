@@ -22,7 +22,7 @@ requires 'Catalyst::View::TT';
 requires 'Catalyst::Controller::FormBuilder';
 requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::State::Cookie';
-requires 'Session::Store::DBIC';
+requires 'Catalyst::Plugin::Session::Store::DBIC ';
 
 recommends 'Pod::Usage';
 
