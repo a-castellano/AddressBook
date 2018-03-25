@@ -35,7 +35,8 @@ Catalyst::Helper::Model::DBIC::Schema - 0.65
 
 =head1 LICENSE
 
-This library is free software, you can redistribute it and/or modify it under the same terms as Perl itself.
+This library is free software, you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
 

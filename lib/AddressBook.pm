@@ -50,8 +50,12 @@ __PACKAGE__->config(
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header                      => 1,   # Send X-Catalyst header
 );
-
-__PACKAGE__->config( session => { flash_to_stash => 1 } );
+__PACKAGE__->config(
+    session => {
+        dbic_class     => 'AddressDB::Session',
+        flash_to_stash => 1
+    }
+);
 
 # Start the application
 __PACKAGE__->setup();
