@@ -23,6 +23,8 @@ requires 'Catalyst::Controller::FormBuilder';
 requires 'Catalyst::Plugin::Session';
 requires 'Catalyst::Plugin::Session::State::Cookie';
 requires 'Catalyst::Plugin::Session::Store::DBIC';
+requires 'Text::CSV_XS';
+requires 'Config::ZOMG';
 
 recommends 'Pod::Usage';
 

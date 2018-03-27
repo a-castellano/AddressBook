@@ -91,6 +91,8 @@ __PACKAGE__->has_many(
     { cascading_delete => 1 }
 );
 
+__PACKAGE__->add_unique_constraint( name => [qw/firstname lastname/] );
+
 sub name {
     my $self = shift;
     return $self->firstname . ' ' . $self->lastname;

@@ -115,7 +115,7 @@ sub delete : Local {
     if ($address) {
 
         # "Deleted First Last's Home address
-        $c->stash->{message} =
+        $c->flash->{message} =
             'Deleted '
           . $address->person->name . q{'s }
           . $address->location
@@ -123,10 +123,11 @@ sub delete : Local {
         $address->delete;
     }
     else {
-        $c->stash->{error} = 'No such address';
+        $c->flash->{error} = 'No such address';
 
     }
-    $c->forward('/person/list');
+    $c->response->redirect( $c->uri_for_action('person/list') );
+    $c->detach();
 }
 
 =encoding utf8
