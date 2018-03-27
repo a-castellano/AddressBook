@@ -53,7 +53,7 @@ sub search_addresses : Private {
     my ( $self, $c, @tokens ) = @_;
     my @address_fields = qw/postal phone email location/;
     @address_fields = cross( \@address_fields, \@tokens );
-    return $c->model('AddressDB::Addresses')->search( \@address_fields );
+    return $c->model('AddressDB::Address')->search( \@address_fields );
 
 }
 
@@ -61,7 +61,7 @@ sub search_names : Private {
     my ( $self, $c, @tokens ) = @_;
     my @people_fields = qw/firstname lastname/;
     @people_fields = cross( \@people_fields, \@tokens );
-    return $c->model('AddressDB::People')->search( \@people_fields );
+    return $c->model('AddressDB::Person')->search( \@people_fields );
 
 }
 
