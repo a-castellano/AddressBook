@@ -22,7 +22,7 @@ use Catalyst qw/
   Static::Simple
   Session
   Session::State::Cookie
-  Session::Store::FastMmap
+  Session::Store::DBIC
   /;
 
 extends 'Catalyst';
