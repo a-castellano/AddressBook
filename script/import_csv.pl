@@ -55,7 +55,7 @@ data";
             }
         );
         print "Added
-@{[$person->name]}'s $location address.\n";
+#@{[$person->name]}'s $location address.\n";
     };
     if ($@) { warn "Problem adding address: $@"; }
 }
