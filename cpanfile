@@ -25,6 +25,7 @@ requires 'Catalyst::Plugin::Session::State::Cookie';
 requires 'Catalyst::Plugin::Session::Store::DBIC';
 requires 'Text::CSV_XS';
 requires 'Config::ZOMG';
+requires 'Catalyst::Plugin::Authentication';
 
 recommends 'Pod::Usage';
 
