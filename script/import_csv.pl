@@ -19,46 +19,44 @@ use Path::Class;
 use lib dir( $Bin, '..', 'lib' )->stringify;
 
 use AddressBook::Schema::AddressDB;
-use Config::JFDI;
+use Config::ZOMG;
 use strict;
 
 my $filename = file( $Bin, '..', 'addressbook.conf' )->stringify;
 
-#my $abs_path = abs_path( $filename ) ;
-my $config = Config::JFDI->new( path => $filename );
-my $dsn = $config->get->{'Model::AddressDB'};
+my $config      = Config::ZOMG->new( file => $filename );
+my $config_hash = $config->load;
+my $dsn         = $config_hash->{'Model::AddressDB'}->{'connect_info'};
+$dsn = $dsn =~ s/__HOME__/$Bin\/../r;
 
-print "$dsn\n";
+my $schema = AddressBook::Schema::AddressDB->connect($dsn)
+  or die "Failed to connect to database at $dsn";
 
-#return 1;
+while ( my $line = <> ) {
+    eval {
+        my $csv = Text::CSV_XS->new();
+        $csv->parse($line) or die "Invalid
+data";
+        my ( $first, $last, $location, $address, $phone, $email ) =
+          $csv->fields();
+        my $person = $schema->resultset('Person')->find_or_create(
+            {
+                firstname => $first,
+                lastname  => $last,
+            }
+        );
+        $schema->resultset('Address')->create(
+            {
+                person   => $person,
+                location => $location,
+                postal   => $address,
+                phone    => $phone,
+                email    => $email,
+            }
+        );
+        print "Added
+@{[$person->name]}'s $location address.\n";
+    };
+    if ($@) { warn "Problem adding address: $@"; }
+}
 
-#my $schema = AddressBook::Schema::AddressDB->connect($dsn)
-#  or die "Failed to connect to database at $dsn";
-#
-#while ( my $line = <> ) {
-#    eval {
-#        my $csv = Text::CSV_XS->new();
-#        $csv->parse($line) or die "Invalid data";
-#        my ( $first, $last, $location, $address, $phone, $email ) =
-#          $csv->fields();
-#        my $person = $schema->resultset('Person')->find_or_create(
-#            {
-#                firstname => $first,
-#                lastname  => $last,
-#            }
-#        );
-#        $schema->resultset('Address')->create(
-#            {
-#                person   => $person,
-#                location => $location,
-#                postal   => $address,
-#                phone    => $phone,
-#                email    => $email,
-#            }
-#        );
-#        print "Added @{[$person->name]}'s $location address.\n";
-#    };
-#    if ($@) {
-#        warn "Problem adding address: $@";
-#    }
-#}
