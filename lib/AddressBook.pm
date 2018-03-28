@@ -62,20 +62,15 @@ __PACKAGE__->config(
     'Plugin::Authentication' => {
         default => {
             credential => {
-                class          => 'Password',
-                password_field => 'password',
-                password_type  => 'clear'
+                class => 'Password',
             },
             store => {
-                class => 'Minimal',
-                users => {
-                    testuser1 => {
-                        password => "RanDo99",
-                        editor   => 'yes',
-                        roles    => [qw/edit delete/],
-
-                    },
-                }
+                class      => 'DBIx::Class',
+                user_class => 'AddressDB::User',
+                password_type =>
+                  'clear',    # use salted_hash for real applications
+                role_relation => 'roles',
+                role_field    => 'role'
             }
         }
     }
