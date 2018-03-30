@@ -4,12 +4,12 @@ use strict;
 use warnings;
 use parent 'Catalyst::Model::DBI';
 
-__PACKAGE__->config(
-    dsn      => 'DBI:SQLite:tmp/database',
-    user     => '',
-    password => '',
-    options  => {},
-);
+#__PACKAGE__->config(
+#    dsn      => 'DBI:SQLite:tmp/database',
+#    user     => '',
+#    password => '',
+#    options  => {},
+#);
 
 =head1 NAME
 

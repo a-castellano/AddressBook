@@ -3,15 +3,7 @@ package AddressBook::Model::AddressDB;
 use strict;
 use base 'Catalyst::Model::DBIC::Schema';
 
-__PACKAGE__->config(
-    schema_class => 'AddressBook::Schema::AddressDB',
-
-    connect_info => {
-        dsn      => 'dbi:SQLite:tmp/database',
-        user     => '',
-        password => '',
-    }
-);
+__PACKAGE__->config( schema_class => 'AddressBook::Schema::AddressDB', );
 
 =head1 NAME
 
