@@ -43,6 +43,10 @@ if ( $ENV{APP_TEST} ) {
     __PACKAGE__->config( 'Plugin::ConfigLoader' =>
           { file => __PACKAGE__->path_to('t/lib/addressbook_testing.conf') } );
 }
+else {
+    __PACKAGE__->config( 'Plugin::ConfigLoader' =>
+          { file => __PACKAGE__->path_to('addressbook.conf') } );
+}
 
 __PACKAGE__->config(
     name => 'AddressBook',
