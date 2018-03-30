@@ -26,6 +26,7 @@ requires 'Catalyst::Plugin::Session::Store::DBIC';
 requires 'Text::CSV_XS';
 requires 'Config::ZOMG';
 requires 'Catalyst::Plugin::Authentication';
+requires 'Catalyst::Helper::Model::DBI';
 
 recommends 'Pod::Usage';
 

@@ -1,0 +1,23 @@
+
+6: connect_info dbi:SQLite:__HOME__/tmp/database
+   ^                                            
+found bareword where operator expected
+
+Missing ';' above?
+
+There is no previous '?' to match a ':' on line 6
+6: connect_info dbi:SQLite:__HOME__/tmp/database
+                   ^
+
+There is no previous '?' to match a ':' on line 6
+6: connect_info dbi:SQLite:__HOME__/tmp/database
+                          ^
+
+There is no previous '?' to match a ':' on line 10
+10: connect_info dbi:SQLite:__HOME__database
+                    ^
+
+There is no previous '?' to match a ':' on line 10
+10: connect_info dbi:SQLite:__HOME__database
+                           ^
+13:	To save a full .LOG file rerun with -g
