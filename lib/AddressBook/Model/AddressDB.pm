@@ -26,18 +26,16 @@ Catalyst::Helper::Model::DBIC::Schema - 0.65
 =cut
 
 sub get_users {
-    my $self    = shift;
-    my $storage = $self->storage;
-    return $storage->dbh_do(
-        sub {
-            my $self = shift;
-            my $dbh  = shift;
-            my $sth  = $dbh->prepare('SELECT username FROM user');
-            $sth->execute();
-            my @rows = @{ $sth->fetchall_arrayref() };
-            return map { $_->[0] } @rows;
-        }
-    );
+
+    # version 2
+    my $self  = shift;
+    my $users = $self->resultset('User');
+    my @result;
+    while ( my $user = $users->next ) {
+        push @result, $user->username;
+
+    }
+    return @result;
 }
 
 =head1 AUTHOR
