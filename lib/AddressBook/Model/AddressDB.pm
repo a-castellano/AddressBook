@@ -21,6 +21,25 @@ L<Catalyst::Model::DBIC::Schema> Model using schema L<AddressBook::Schema::Addre
 
 Catalyst::Helper::Model::DBIC::Schema - 0.65
 
+=head1 METHODS
+
+=cut
+
+sub get_users {
+    my $self    = shift;
+    my $storage = $self->storage;
+    return $storage->dbh_do(
+        sub {
+            my $self = shift;
+            my $dbh  = shift;
+            my $sth  = $dbh->prepare('SELECT username FROM user');
+            $sth->execute();
+            my @rows = @{ $sth->fetchall_arrayref() };
+            return map { $_->[0] } @rows;
+        }
+    );
+}
+
 =head1 AUTHOR
 
 Álvaro Castellano Vela, alvaro.castellano.vela@gmail.com,,
